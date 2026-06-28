@@ -178,8 +178,18 @@ function loadSettings() {
 function showUserImage(src) {
   userImage.src = src;
   userImage.hidden = false;
-  imagePlaceholder.hidden = true;
+  userImage.removeAttribute('hidden');
   imagePickerButton.classList.add('has-image');
+  imagePickerButton.setAttribute('aria-label', '上部画像を変更する');
+
+  // 画像選択後は、点線枠と「画像」テキストを完全に消す。
+  imagePlaceholder.hidden = true;
+  imagePlaceholder.setAttribute('hidden', '');
+  imagePlaceholder.setAttribute('aria-hidden', 'true');
+  imagePlaceholder.style.display = 'none';
+  imagePlaceholder.style.visibility = 'hidden';
+  imagePlaceholder.style.opacity = '0';
+  imagePlaceholder.textContent = '';
 }
 
 async function pickBackgroundColorFromImage() {
