@@ -1,9 +1,9 @@
-const CACHE_NAME = 'chair-timer-v7-antler-default';
+const CACHE_NAME = 'chair-timer-v8-color-picker-modal';
 const ASSETS = [
   './',
   './index.html',
-  './style.css?v=antler-default-1',
-  './app.js?v=antler-default-1',
+  './style.css?v=color-picker-modal-1',
+  './app.js?v=color-picker-modal-1',
   './manifest.json',
   './assets/antler.png',
   './assets/chair.png?v=user-chair-2',
