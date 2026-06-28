@@ -57,6 +57,7 @@ body {
 }
 
 .image-picker img {
+  grid-area: 1 / 1;
   width: auto;
   height: auto;
   max-width: clamp(44px, 11.5vw, 58px);
@@ -68,6 +69,7 @@ body {
 }
 
 #imagePlaceholder {
+  grid-area: 1 / 1;
   display: grid;
   place-items: center;
   width: clamp(44px, 11.5vw, 58px);
@@ -79,11 +81,18 @@ body {
 #imagePlaceholder[hidden],
 .image-picker.has-image #imagePlaceholder {
   display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 .image-picker.has-image {
   border: 0;
   background: transparent;
+}
+
+.image-picker.has-image img {
+  display: block !important;
 }
 
 .timer-area {
