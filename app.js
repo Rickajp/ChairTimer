@@ -1,3 +1,5 @@
+const DEFAULT_IMAGE_SRC = 'assets/antler.png';
+
 const state = {
   totalSeconds: 10 * 60,
   remainingSeconds: 10 * 60,
@@ -170,7 +172,7 @@ function loadSettings() {
   setBackgroundColor(colorInput.value);
 
   const storedImage = localStorage.getItem('chairTimer.userImage');
-  if (storedImage) showUserImage(storedImage);
+  showUserImage(storedImage || DEFAULT_IMAGE_SRC);
 
   quickButtons.forEach(b => b.classList.toggle('selected', Number(b.dataset.min) * 60 === state.totalSeconds));
 }
@@ -182,7 +184,7 @@ function showUserImage(src) {
   imagePickerButton.classList.add('has-image');
   imagePickerButton.setAttribute('aria-label', '上部画像を変更する');
 
-  // 画像選択後は、点線枠と「画像」テキストを完全に消す。
+  // 画像表示中は、点線枠と「画像」テキストを完全に消す。
   imagePlaceholder.hidden = true;
   imagePlaceholder.setAttribute('hidden', '');
   imagePlaceholder.setAttribute('aria-hidden', 'true');
@@ -204,12 +206,12 @@ async function pickBackgroundColorFromImage() {
     }
   }
 
-  // SafariなどEyeDropper非対応の場合は、選択画像の平均色を使います。
+  // SafariなどEyeDropper非対応の場合は、表示画像の平均色を使います。
   if (userImage.src) {
     const color = await getAverageColorFromImageElement(userImage);
     if (color) setBackgroundColor(color);
   } else {
-    alert('先に上部画像を選んでください。');
+    alert('画像が読み込まれていません。');
   }
 }
 
