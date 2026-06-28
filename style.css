@@ -222,6 +222,72 @@ input[type="range"] { width: 160px; }
 
 .sample-color:disabled { opacity: .45; }
 
+.color-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  place-items: center;
+  padding: 18px;
+  background: rgba(0,0,0,.68);
+  backdrop-filter: blur(8px);
+}
+
+.color-modal.is-open {
+  display: grid;
+}
+
+.color-modal-card {
+  width: min(100%, 520px);
+  max-height: 92svh;
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 24px;
+  background: rgba(30, 8, 10, .96);
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 24px 60px rgba(0,0,0,.42);
+}
+
+.color-modal-title {
+  margin: 0;
+  text-align: center;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.color-canvas {
+  width: 100%;
+  max-height: 70svh;
+  border-radius: 16px;
+  background: rgba(255,255,255,.06);
+  object-fit: contain;
+  touch-action: manipulation;
+  cursor: crosshair;
+}
+
+.color-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.picked-color {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.75);
+  background: var(--bg);
+  box-shadow: 0 0 0 4px rgba(255,255,255,.12);
+}
+
+.modal-close {
+  min-width: 110px;
+  padding: 11px 18px;
+}
+
 @media (max-height: 680px) {
   .top-card { top: 10%; }
   .timer-area { top: 42%; }
