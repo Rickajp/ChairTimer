@@ -44,8 +44,8 @@ body {
 .image-picker {
   width: auto;
   height: auto;
-  max-width: clamp(44px, 11.5vw, 58px);
-  max-height: clamp(44px, 8svh, 58px);
+  max-width: clamp(53px, 13.8vw, 70px);
+  max-height: clamp(53px, 9.6svh, 70px);
   border: 0;
   padding: 0;
   background: transparent;
@@ -60,8 +60,8 @@ body {
   grid-area: 1 / 1;
   width: auto;
   height: auto;
-  max-width: clamp(44px, 11.5vw, 58px);
-  max-height: clamp(44px, 8svh, 58px);
+  max-width: clamp(53px, 13.8vw, 70px);
+  max-height: clamp(53px, 9.6svh, 70px);
   object-fit: contain;
   display: block;
   background: transparent;
@@ -72,8 +72,8 @@ body {
   grid-area: 1 / 1;
   display: grid;
   place-items: center;
-  width: clamp(44px, 11.5vw, 58px);
-  height: clamp(44px, 11.5vw, 58px);
+  width: clamp(53px, 13.8vw, 70px);
+  height: clamp(53px, 13.8vw, 70px);
   border: 1px dashed rgba(255,255,255,.22);
   border-radius: 12px;
 }
@@ -120,8 +120,8 @@ body {
   left: 50%;
   bottom: 5%;
   transform: translateX(-50%);
-  width: min(50vw, 240px);
-  max-height: 25svh;
+  width: min(60vw, 288px);
+  max-height: 30svh;
   object-fit: contain;
   filter: drop-shadow(0 24px 24px rgba(0,0,0,.40));
 }
@@ -225,7 +225,7 @@ input[type="range"] { width: 160px; }
 @media (max-height: 680px) {
   .top-card { top: 10%; }
   .timer-area { top: 42%; }
-  .chair { width: min(48vw, 210px); }
+  .chair { width: min(58vw, 252px); }
 }
 
 @media (display-mode: standalone) {
