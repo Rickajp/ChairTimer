@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#6f171c" />
   <title>Chair Timer</title>
   <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="style.css?v=antler-default-1" />
+  <link rel="stylesheet" href="style.css?v=color-picker-modal-1" />
   <link rel="apple-touch-icon" href="assets/icon-192.png" />
 </head>
 <body>
@@ -59,6 +59,17 @@
     </section>
   </main>
 
-  <script src="app.js?v=antler-default-1"></script>
+  <section class="color-modal" id="colorModal" aria-hidden="true">
+    <div class="color-modal-card" role="dialog" aria-modal="true" aria-label="画像から背景色を選ぶ">
+      <p class="color-modal-title">画像の使いたい色をタップしてください</p>
+      <canvas id="colorCanvas" class="color-canvas"></canvas>
+      <div class="color-modal-actions">
+        <span class="picked-color" id="pickedColorPreview" aria-hidden="true"></span>
+        <button class="ghost modal-close" id="closeColorModal" type="button">閉じる</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="app.js?v=color-picker-modal-1"></script>
 </body>
 </html>
