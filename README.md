@@ -1,11 +1,8 @@
-# ChairTimer
+# Chair Timer - Timer Small / Flexible Top Image
 
-PWA countdown timer.
+変更点:
+- タイマー数字を従来の約1/2サイズに変更
+- 上部ユーザー画像の表示枠を固定正方形ではなく、画像の縦横比を維持する表示に変更
+- UI位置関係は layout-fixed 版を維持
 
-## Local preview
-
-```bash
-python3 -m http.server 8000
-```
-
-Open http://localhost:8000
+キャッシュが残る場合は、ブラウザのサイトデータ削除またはホーム画面アイコンの追加し直しを行ってください。

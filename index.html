@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#6f171c" />
+  <title>Chair Timer</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css?v=hide-placeholder-1" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+</head>
+<body>
+  <main class="app" id="app">
+    <section class="hero" aria-label="タイマー画面">
+      <section class="top-card" id="topCard">
+        <button class="image-picker" id="imagePickerButton" type="button" aria-label="上部画像を選ぶ">
+          <img id="userImage" alt="ユーザー画像" hidden />
+          <span id="imagePlaceholder">画像</span>
+        </button>
+        <input id="imageInput" type="file" accept="image/*" hidden />
+      </section>
+
+      <section class="timer-area">
+        <div class="time" id="timeText">10:00</div>
+      </section>
+
+      <img class="chair" src="assets/chair.png?v=user-chair-2" alt="椅子" />
+    </section>
+
+    <section class="below-panel" aria-label="操作パネル">
+      <div class="controls">
+        <button class="ghost" id="cancelButton" type="button">キャンセル</button>
+        <button class="primary" id="startButton" type="button">スタート</button>
+      </div>
+
+      <section class="quick-times" aria-label="時間を選択">
+        <button data-min="1">1分</button>
+        <button data-min="3">3分</button>
+        <button data-min="5">5分</button>
+        <button data-min="10" class="selected">10分</button>
+        <button data-min="15">15分</button>
+      </section>
+
+      <section class="settings">
+        <label>
+          背景色
+          <input id="colorInput" type="color" value="#8c2027" />
+        </label>
+        <button class="sample-color" id="sampleColorButton" type="button">画像から背景色を選ぶ</button>
+        <label>
+          音量
+          <input id="volumeInput" type="range" min="0" max="1" step="0.05" value="0.8" />
+        </label>
+        <label class="switch-row">
+          バイブ
+          <input id="vibrateInput" type="checkbox" checked />
+        </label>
+      </section>
+    </section>
+  </main>
+
+  <script src="app.js?v=hide-placeholder-1"></script>
+</body>
+</html>
