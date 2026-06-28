@@ -6,16 +6,16 @@
   <meta name="theme-color" content="#6f171c" />
   <title>Chair Timer</title>
   <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="style.css?v=hide-placeholder-1" />
+  <link rel="stylesheet" href="style.css?v=antler-default-1" />
   <link rel="apple-touch-icon" href="assets/icon-192.png" />
 </head>
 <body>
   <main class="app" id="app">
     <section class="hero" aria-label="タイマー画面">
       <section class="top-card" id="topCard">
-        <button class="image-picker" id="imagePickerButton" type="button" aria-label="上部画像を選ぶ">
-          <img id="userImage" alt="ユーザー画像" hidden />
-          <span id="imagePlaceholder">画像</span>
+        <button class="image-picker has-image" id="imagePickerButton" type="button" aria-label="上部画像を変更する">
+          <img id="userImage" src="assets/antler.png" alt="上部画像" />
+          <span id="imagePlaceholder" hidden aria-hidden="true"></span>
         </button>
         <input id="imageInput" type="file" accept="image/*" hidden />
       </section>
@@ -59,6 +59,6 @@
     </section>
   </main>
 
-  <script src="app.js?v=hide-placeholder-1"></script>
+  <script src="app.js?v=antler-default-1"></script>
 </body>
 </html>
