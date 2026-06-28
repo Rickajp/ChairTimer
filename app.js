@@ -21,6 +21,10 @@ const imagePickerButton = document.getElementById('imagePickerButton');
 const userImage = document.getElementById('userImage');
 const imagePlaceholder = document.getElementById('imagePlaceholder');
 const sampleColorButton = document.getElementById('sampleColorButton');
+const colorModal = document.getElementById('colorModal');
+const colorCanvas = document.getElementById('colorCanvas');
+const closeColorModal = document.getElementById('closeColorModal');
+const pickedColorPreview = document.getElementById('pickedColorPreview');
 const quickButtons = [...document.querySelectorAll('.quick-times button')];
 
 loadSettings();
@@ -58,7 +62,12 @@ colorInput.addEventListener('input', () => {
 });
 volumeInput.addEventListener('input', saveSettings);
 vibrateInput.addEventListener('change', saveSettings);
-sampleColorButton.addEventListener('click', pickBackgroundColorFromImage);
+sampleColorButton.addEventListener('click', openImageColorPicker);
+closeColorModal.addEventListener('click', closeImageColorPicker);
+colorModal.addEventListener('click', event => {
+  if (event.target === colorModal) closeImageColorPicker();
+});
+colorCanvas.addEventListener('click', pickColorFromCanvas);
 
 imagePickerButton.addEventListener('click', () => imageInput.click());
 imageInput.addEventListener('change', () => {
@@ -184,7 +193,6 @@ function showUserImage(src) {
   imagePickerButton.classList.add('has-image');
   imagePickerButton.setAttribute('aria-label', '上部画像を変更する');
 
-  // 画像表示中は、点線枠と「画像」テキストを完全に消す。
   imagePlaceholder.hidden = true;
   imagePlaceholder.setAttribute('hidden', '');
   imagePlaceholder.setAttribute('aria-hidden', 'true');
@@ -194,25 +202,60 @@ function showUserImage(src) {
   imagePlaceholder.textContent = '';
 }
 
-async function pickBackgroundColorFromImage() {
-  // 対応ブラウザでは、画像の好きな場所をクリックして色を拾えます。
-  if ('EyeDropper' in window) {
-    try {
-      const result = await new EyeDropper().open();
-      setBackgroundColor(result.sRGBHex);
-      return;
-    } catch {
-      return;
-    }
+function openImageColorPicker() {
+  if (!userImage.src) {
+    alert('画像が読み込まれていません。');
+    return;
   }
 
-  // SafariなどEyeDropper非対応の場合は、表示画像の平均色を使います。
-  if (userImage.src) {
-    const color = await getAverageColorFromImageElement(userImage);
-    if (color) setBackgroundColor(color);
-  } else {
-    alert('画像が読み込まれていません。');
-  }
+  const pickerImage = new Image();
+  pickerImage.onload = () => {
+    drawImageForColorPicking(pickerImage);
+    colorModal.classList.add('is-open');
+    colorModal.setAttribute('aria-hidden', 'false');
+  };
+  pickerImage.onerror = () => alert('画像を読み込めませんでした。');
+  pickerImage.src = userImage.src;
+}
+
+function closeImageColorPicker() {
+  colorModal.classList.remove('is-open');
+  colorModal.setAttribute('aria-hidden', 'true');
+}
+
+function drawImageForColorPicking(img) {
+  const maxSide = 1200;
+  const scale = Math.min(1, maxSide / Math.max(img.naturalWidth, img.naturalHeight));
+  const width = Math.max(1, Math.round(img.naturalWidth * scale));
+  const height = Math.max(1, Math.round(img.naturalHeight * scale));
+
+  colorCanvas.width = width;
+  colorCanvas.height = height;
+
+  const ctx = colorCanvas.getContext('2d', { willReadFrequently: true });
+  ctx.clearRect(0, 0, width, height);
+  ctx.drawImage(img, 0, 0, width, height);
+  pickedColorPreview.style.background = colorInput.value;
+}
+
+function pickColorFromCanvas(event) {
+  const rect = colorCanvas.getBoundingClientRect();
+  const x = Math.floor((event.clientX - rect.left) * (colorCanvas.width / rect.width));
+  const y = Math.floor((event.clientY - rect.top) * (colorCanvas.height / rect.height));
+
+  const ctx = colorCanvas.getContext('2d', { willReadFrequently: true });
+  const pixel = ctx.getImageData(
+    Math.min(Math.max(x, 0), colorCanvas.width - 1),
+    Math.min(Math.max(y, 0), colorCanvas.height - 1),
+    1,
+    1
+  ).data;
+
+  const color = rgbToHex(pixel[0], pixel[1], pixel[2]);
+  pickedColorPreview.style.background = color;
+  setBackgroundColor(color);
+  saveSettings();
+  setTimeout(closeImageColorPicker, 180);
 }
 
 function setBackgroundColor(color) {
