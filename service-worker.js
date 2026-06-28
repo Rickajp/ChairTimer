@@ -1,9 +1,9 @@
-const CACHE_NAME = 'chair-timer-v5-hide-placeholder';
+const CACHE_NAME = 'chair-timer-v6-hide-placeholder';
 const ASSETS = [
   './',
   './index.html',
-  './style.css?v=hide-placeholder-1',
-  './app.js?v=hide-placeholder-1',
+  './style.css?v=hide-placeholder-2',
+  './app.js?v=hide-placeholder-2',
   './manifest.json',
   './assets/chair.png?v=user-chair-2',
   './assets/icon-192.png',
