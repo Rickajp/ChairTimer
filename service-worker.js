@@ -1,10 +1,11 @@
-const CACHE_NAME = 'chair-timer-v6-hide-placeholder';
+const CACHE_NAME = 'chair-timer-v7-antler-default';
 const ASSETS = [
   './',
   './index.html',
-  './style.css?v=hide-placeholder-2',
-  './app.js?v=hide-placeholder-2',
+  './style.css?v=antler-default-1',
+  './app.js?v=antler-default-1',
   './manifest.json',
+  './assets/antler.png',
   './assets/chair.png?v=user-chair-2',
   './assets/icon-192.png',
   './assets/icon-512.png'
